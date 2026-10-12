@@ -387,3 +387,31 @@ body {
     will-change: auto;
   }
 }
+
+
+
+
+
+/* Data Council — consistent background on desktop and mobile */
+:root {
+  --dc-background: #F4F0E8;
+}
+
+html {
+  min-height: 100%;
+  background: var(--dc-background);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background-color: var(--dc-background);
+}
+
+/* Keep the page background consistent on mobile */
+@media (max-width: 767px) {
+  html,
+  body {
+    background-color: #F4F0E8 !important;
+  }
+}
