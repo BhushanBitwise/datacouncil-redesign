@@ -1,5 +1,3 @@
-
-
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, MoveUpRight } from "lucide-react";
@@ -12,6 +10,7 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 import PlacementSection from "@/components/home/PlacementSection";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 import EnquirySection from "@/components/home/EnquirySection";
+import CompanyMarquee from "@/components/home/CompanyMarquee";
 
 const stats = [
   { value: "25k", label: "Students" },
@@ -102,7 +101,8 @@ export default function Home() {
                 <div className="relative">
                   <div className="relative aspect-[4/3] overflow-hidden rounded-[28px] bg-[#e6e0d5] sm:aspect-[5/4]">
                     <Image
-                      src="/images/classroom-training.webp"
+                      src="/images/collaborative-classroom.webp"
+                      // src="/images/classroom-training.webp"
                       alt="Students learning and developing technology skills at Data Council"
                       fill
                       sizes="(max-width: 1024px) 100vw, 52vw"
@@ -133,6 +133,9 @@ export default function Home() {
             </ScrollReveal>
           </div>
         </section>
+
+        <CompanyMarquee/>
+
 
         {/* Placement highlights */}
         <PlacementSection />
@@ -202,3 +205,11 @@ export default function Home() {
     </>
   );
 }
+
+
+
+
+
+
+
+

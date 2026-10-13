@@ -3,10 +3,9 @@
 
 import { useRef, type ReactNode } from "react";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.registerPlugin(useGSAP);
 
 type RevealDirection = "up" | "left" | "right" | "scale";
 
@@ -28,100 +27,126 @@ export default function ScrollReveal({
   useGSAP(
     () => {
       const element = container.current;
+
       if (!element) return;
 
-      // Keep content visible when the user requests reduced motion.
       const reduceMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
+        "(prefers-reduced-motion: reduce)",
       ).matches;
 
       if (reduceMotion) {
         gsap.set(element, {
           clearProps: "all",
         });
+
         return;
       }
 
-      const mobile = window.matchMedia("(max-width: 640px)").matches;
-      const distance = mobile ? 16 : 30;
+      const isMobile = window.matchMedia(
+        "(max-width: 640px)",
+      ).matches;
 
-      const startState =
-        direction === "scale"
-          ? { scale: 0.97, x: 0, y: 0 }
-          : direction === "left"
-            ? { x: -distance, y: 0 }
-            : direction === "right"
-              ? { x: distance, y: 0 }
-              : { x: 0, y: distance };
+      const distance = isMobile ? 12 : 24;
 
-      const from = {
-        autoAlpha: 0,
-        ...startState,
-      };
-      const to = {
-        autoAlpha: 1,
-        x: 0,
-        y: 0,
-        scale: 1,
-        duration: mobile ? 0.55 : 0.8,
-        delay: mobile ? Math.min(delay, 0.12) : delay,
-        ease: "power3.out" as const,
-        overwrite: "auto" as const,
+      let startState: {
+        x: number;
+        y: number;
+        scale?: number;
       };
 
-      if (mobile) {
-        let animation: gsap.core.Tween | undefined;
+      switch (direction) {
+        case "left":
+          startState = {
+            x: -distance,
+            y: 0,
+          };
+          break;
 
-        if (!("IntersectionObserver" in window)) {
-          animation = gsap.fromTo(element, from, to);
-          return () => animation?.kill();
-        }
+        case "right":
+          startState = {
+            x: distance,
+            y: 0,
+          };
+          break;
 
-        const observer = new IntersectionObserver(
-          ([entry]) => {
-            if (!entry.isIntersecting) return;
+        case "scale":
+          startState = {
+            x: 0,
+            y: 0,
+            scale: 0.98,
+          };
+          break;
 
-            observer.disconnect();
-            animation = gsap.fromTo(element, from, to);
+        default:
+          startState = {
+            x: 0,
+            y: distance,
+          };
+      }
+
+      let animation: gsap.core.Tween | undefined;
+
+      const showElement = () => {
+        if (animation) return;
+
+        animation = gsap.fromTo(
+          element,
+          {
+            autoAlpha: 0,
+            ...startState,
           },
-          { rootMargin: "0px 0px -5% 0px" }
+          {
+            autoAlpha: 1,
+            x: 0,
+            y: 0,
+            scale: 1,
+            duration: isMobile ? 0.4 : 0.6,
+            delay: Math.min(
+              Math.max(delay, 0),
+              isMobile ? 0.08 : 0.15,
+            ),
+            ease: "power2.out",
+            overwrite: "auto",
+            clearProps: "transform",
+          },
         );
+      };
 
-        observer.observe(element);
+      if (!("IntersectionObserver" in window)) {
+        showElement();
 
         return () => {
-          observer.disconnect();
           animation?.kill();
         };
       }
 
-      const animation = gsap.fromTo(
-        element,
-        from,
+      const intersectionObserver = new IntersectionObserver(
+        (entries) => {
+          const entry = entries[0];
+
+          if (!entry?.isIntersecting) return;
+
+          intersectionObserver.disconnect();
+          showElement();
+        },
         {
-          ...to,
-          scrollTrigger: {
-            trigger: element,
-            start: "top 95%",
-            once: true,
-            invalidateOnRefresh: true,
-          },
-        }
+          rootMargin: "0px 0px -4% 0px",
+          threshold: 0.01,
+        },
       );
 
-      // Recalculate trigger positions after initialization.
-      ScrollTrigger.refresh();
+      intersectionObserver.observe(element);
 
       return () => {
-        animation.scrollTrigger?.kill();
-        animation.kill();
+        intersectionObserver.disconnect();
+        animation?.kill();
       };
     },
     {
       scope: container,
       dependencies: [direction, delay],
       revertOnUpdate: true,
-    }
+    },
   );
 
   return (

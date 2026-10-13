@@ -13,7 +13,7 @@ import {
 export default function Hero() {
   return (
     <>
-      <section className="relative overflow-hidden pb-20 pt-14 sm:pb-28 sm:pt-20 lg:pb-32 lg:pt-24">
+      <section className="relative overflow-hidden pb-20 pt-14 sm:pb-28 sm:pt-20 lg:pb-32 lg:pt-24 bg-[#F4F0E8]">
         <div className="container-main">
           <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
             <div className="relative z-10">
@@ -78,9 +78,9 @@ export default function Hero() {
             </div>
 
             <div className="dc-hero-visual relative mx-auto w-full max-w-[580px] lg:ml-auto">
-              <div className="relative aspect-[4/4.4] overflow-hidden rounded-[28px] bg-[#101010] sm:aspect-[4/4.1] sm:rounded-[36px] lg:aspect-[4/4.5]">
+               <div className="relative aspect-[4/4.4] overflow-hidden rounded-[28px] bg-[#101010] sm:aspect-[4/4.1] sm:rounded-[36px] lg:aspect-[4/4.5]">
                 <Image
-                  src="/images/hero-classroom.webp"
+                  src="/images/hero2.webp"
                   alt="Students learning and building technology skills in a classroom"
                   fill
                   priority
@@ -136,7 +136,8 @@ export default function Hero() {
                     </Link>
                   </div>
                 </div>
-              </div>
+              </div> 
+              
 
               <div
                 aria-hidden="true"
