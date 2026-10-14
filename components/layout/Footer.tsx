@@ -309,7 +309,7 @@ export default function Footer() {
               prefetch
               className="group inline-flex h-14 w-fit shrink-0 items-center gap-5 rounded-full bg-[#C9FF3B] px-6 text-sm font-semibold text-[#101010] transition-transform duration-300 hover:scale-[1.03] active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C9FF3B]"
             >
-              <span>Enquire now</span>
+              <span className="text-black">Enquire now</span>
               <span className="flex size-8 items-center justify-center rounded-full bg-[#101010] text-[#F4F0E8] transition-transform duration-300 group-hover:rotate-45">
                 <ArrowUpRight size={16} aria-hidden="true" />
               </span>
