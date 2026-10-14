@@ -1,85 +1,154 @@
+"use client";
 
-import ScrollReveal from "@/components/ui/ScrollReveal";
-import { ArrowUpRight } from "lucide-react";
+import dynamic from "next/dynamic";
+import Image from "next/image";
 import Link from "next/link";
+import { memo, useCallback, useEffect, useRef, useState } from "react";
+import type { CSSProperties } from "react";
+import { ArrowUpRight, Maximize2 } from "lucide-react";
 
-const placements = [
-  { name: "Shweta S.", role: "Fullstack Developer", salary: "11.45 LPA" },
-  { name: "Bhupendra N.", role: "Fullstack Developer", salary: "13 LPA" },
-  { name: "Chetan N.", role: "Fullstack Developer", salary: "10.5 LPA" },
-  { name: "Nikita M.", role: "Fullstack Developer", salary: "11 LPA" },
-  { name: "Kunal R.", role: "Fullstack Developer", salary: "10.5 LPA" },
-  { name: "Noman A.", role: "Fullstack Developer", salary: "10 LPA" },
-];
+import { FEATURED_IDS, GLOWS, PLACEMENTS } from "@/data/placements";
+
+// Lightbox JS tabhi load hoga jab user poster pe click karega
+const PosterLightbox = dynamic(() => import("./PosterLightbox"), {
+  ssr: false,
+});
+
+const FEATURED = FEATURED_IDS.map(
+  (id) => PLACEMENTS.find((p) => p.id === id)!
+).filter(Boolean);
+
+type CardProps = {
+  index: number;
+  hidden: boolean;
+  onOpen: (index: number) => void;
+};
+
+const PosterCard = memo(function PosterCard({ index, hidden, onOpen }: CardProps) {
+  const item = FEATURED[index];
+  const glow = GLOWS[index % GLOWS.length];
+
+  return (
+    <figure className="w-[200px] sm:w-[250px] lg:w-[270px]">
+      <button
+        type="button"
+        onClick={() => onOpen(index)}
+        tabIndex={hidden ? -1 : 0}
+        aria-label={`View placement poster of ${item.name}`}
+        style={{ "--glow": glow } as CSSProperties}
+        className="glow-card group block w-full rounded-3xl border border-white/10 p-2.5 text-left transition-transform duration-300 hover:-translate-y-1.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#c9ff3b] sm:p-3"
+      >
+        <div className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-white/5 shadow-[0_18px_40px_-12px_rgba(0,0,0,0.7)] ring-1 ring-white/15">
+          <Image
+            src={`/images/placements/${item.id}.webp`}
+            alt={`${item.name} placed at ${item.company}`}
+            fill
+            sizes="(max-width: 639px) 190px, 270px"
+            quality={70}
+            loading="lazy"
+            className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          />
+          <span className="absolute right-2 top-2 flex size-7 items-center justify-center rounded-full bg-black/55 text-white opacity-0 backdrop-blur-sm transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100">
+            <Maximize2 size={13} aria-hidden="true" />
+          </span>
+        </div>
+      </button>
+
+      <figcaption className="mt-3 px-1">
+        <p className="truncate text-sm font-medium text-white sm:text-base">
+          {item.name}
+        </p>
+        <p className="mt-0.5 truncate text-xs text-white/55 sm:text-sm">
+          {item.company}
+        </p>
+      </figcaption>
+    </figure>
+  );
+});
 
 export default function PlacementSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [inView, setInView] = useState(false);
+  const [active, setActive] = useState<number | null>(null);
+
+  // Section screen se bahar ho to animation pause (CPU/GPU bachta hai)
+  useEffect(() => {
+    const node = sectionRef.current;
+    if (!node) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { rootMargin: "200px 0px" }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  const open = useCallback((index: number) => setActive(index), []);
+  const close = useCallback(() => setActive(null), []);
+
   return (
-    <section className="section-space">
+    <section
+      ref={sectionRef}
+      id="placements"
+      aria-labelledby="placements-heading"
+      data-inview={inView}
+      className="marquee-scope dark-section overflow-hidden py-16 sm:py-20 lg:py-24"
+      style={{ contentVisibility: "auto", containIntrinsicSize: "700px" }}
+    >
       <div className="container-main">
-        <ScrollReveal>
-          <p className="eyebrow">Career outcomes</p>
-
-          <div className="mt-6 flex flex-col justify-between gap-6 md:flex-row md:items-end">
-            <h2 className="max-w-3xl text-4xl font-semibold leading-[1.05] tracking-[-0.07em] sm:text-6xl lg:text-7xl">
-              Skills that take
+        <div className="mb-8 flex flex-col justify-between gap-5 sm:mb-12 sm:flex-row sm:items-end">
+          <div className="max-w-2xl">
+            <h2
+              id="placements-heading"
+              className="text-4xl font-semibold leading-tight tracking-[-0.06em] sm:text-6xl"
+            >
+              Placed. Proud.
               <br />
-              you places.
+              <span className="text-white/45">Making it count.</span>
             </h2>
-
-            <p className="max-w-sm text-sm leading-7 text-black/60">
-              Explore student placement highlights published by Data Council.
+            <p className="mt-4 text-sm leading-7 text-white/60 sm:text-base">
+              Real learners, real offers.{" "}
+              <span className="text-[#c9ff3b]">{PLACEMENTS.length} placements</span>{" "}
+              and counting.
             </p>
           </div>
-        </ScrollReveal>
 
-        <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {placements.map((student, index) => (
-            <ScrollReveal key={student.name} delay={(index % 3) * 0.08}>
-              <article className="group rounded-2xl border border-black/10 bg-white/50 p-6 transition-colors duration-300 hover:bg-white">
-                <div className="flex items-start justify-between">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[#101010] text-sm font-semibold text-[#c9ff3b]">
-                    {student.name
-                      .split(" ")
-                      .map((part) => part[0])
-                      .join("")
-                      .replace(".", "")}
-                  </span>
+          <Link href="/placements" className="lime-button self-start sm:self-auto">
+            View all <ArrowUpRight size={17} />
+          </Link>
+        </div>
+      </div>
 
-                  <ArrowUpRight
-                    size={20}
-                    className="text-black/35 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-black"
-                  />
-                </div>
-
-                <div className="mt-10">
-                  <p className="text-xl font-semibold tracking-tight">
-                    {student.name}
-                  </p>
-                  <p className="mt-1 text-sm text-black/55">{student.role}</p>
-                </div>
-
-                <div className="mt-6 border-t border-black/10 pt-5">
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-black/45">
-                    Published salary highlight
-                  </p>
-                  <p className="mt-2 text-3xl font-semibold tracking-[-0.07em]">
-                    {student.salary}
-                  </p>
-                </div>
-              </article>
-            </ScrollReveal>
+      {/* Full-bleed single-row marquee */}
+      <div className="marquee-mask overflow-hidden py-3">
+        <div
+          className="marquee-track"
+          style={{ "--marquee-duration": "70s" } as CSSProperties}
+        >
+          {[0, 1].map((copy) => (
+            <ul
+              key={copy}
+              className="marquee-group"
+              aria-hidden={copy === 1 ? true : undefined}
+            >
+              {FEATURED.map((item, index) => (
+                <li key={item.id}>
+                  <PosterCard index={index} hidden={copy === 1} onOpen={open} />
+                </li>
+              ))}
+            </ul>
           ))}
         </div>
-
-        <p className="mt-5 text-xs leading-5 text-black/45">
-          These are published individual highlights, not a representation of
-          average salary or a guaranteed placement outcome.
-        </p>
-
-        <Link href="/placements" className="outline-button mt-7">
-          Explore placements <ArrowUpRight size={16} />
-        </Link>
       </div>
+
+      {active !== null && (
+        <PosterLightbox
+          ids={FEATURED_IDS}
+          index={active}
+          onChange={setActive}
+          onClose={close}
+        />
+      )}
     </section>
   );
 }
