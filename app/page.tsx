@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, MoveUpRight } from "lucide-react";
 
-import Navbar from "@/components/layout/Navbar";
+// import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/home/Hero";
 import Marquee from "@/components/home/Marquee";
 import CoursesSection from "@/components/home/CoursesSection";
@@ -11,6 +11,7 @@ import PlacementSection from "@/components/home/PlacementSection";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 import EnquirySection from "@/components/home/EnquirySection";
 import CompanyMarquee from "@/components/home/CompanyMarquee";
+import LiveProjects from "@/components/home/LiveProjects";
 
 const stats = [
   { value: "25k", label: "Students" },
@@ -22,7 +23,7 @@ const stats = [
 export default function Home() {
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
 
       <main>
         <Hero />
@@ -137,73 +138,25 @@ export default function Home() {
         <CompanyMarquee/>
 
 
-        {/* Placement highlights */}
-        <PlacementSection />
 
         {/* Student testimonials */}
         <TestimonialsSection />
 
+        {/* Placement highlights */}
+        <PlacementSection />
+
+
+
+        <LiveProjects/>
+
         {/* Enquiry form */}
         <EnquirySection />
 
-        {/* Final call to action */}
-        <section className="dark-section py-20 sm:py-28">
-          <div className="container-main">
-            <ScrollReveal>
-              <div className="rounded-3xl border border-white/15 bg-white/[0.035] p-7 sm:p-12 lg:p-16">
-                <p className="eyebrow">Your next step</p>
 
-                <h2 className="mt-7 max-w-4xl text-4xl font-semibold leading-[1.05] tracking-[-0.07em] sm:text-6xl lg:text-7xl">
-                  Ready to explore
-                  <br />
-                  your learning path?
-                </h2>
-
-                <p className="mt-6 max-w-lg text-sm leading-7 text-white/55 sm:text-base">
-                  Contact Data Council to discuss available training programs
-                  and placement assistance.
-                </p>
-
-                <Link href="/contact" className="lime-button mt-8">
-                  Enquire now
-                  <ArrowUpRight size={17} />
-                </Link>
-              </div>
-            </ScrollReveal>
-          </div>
-        </section>
-
-        
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-black/10 bg-[#f4f0e8] py-8">
-        <div className="container-main flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <Link href="/" className="text-sm font-bold tracking-tight">
-            DATA COUNCIL
-          </Link>
-
-          <nav
-            aria-label="Footer navigation"
-            className="flex flex-wrap gap-x-6 gap-y-3 text-xs text-black/55"
-          >
-            <Link href="/about" className="hover:text-black">
-              About
-            </Link>
-            <Link href="/courses" className="hover:text-black">
-              Courses
-            </Link>
-            <Link href="/placements" className="hover:text-black">
-              Placements
-            </Link>
-            <Link href="/contact" className="hover:text-black">
-              Contact
-            </Link>
-          </nav>
-
-          <p className="text-xs text-black/45">Training &amp; Placement</p>
-        </div>
-      </footer>
+    
+      
     </>
   );
 }

@@ -1,12 +1,12 @@
 
 import Link from "next/link";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
-import Navbar from "@/components/layout/Navbar";
+// import Navbar from "@/components/layout/Navbar";
 
 export default function NotFound() {
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
 
       <main className="container-main flex min-h-[75vh] flex-col items-start justify-center py-20">
         <span className="eyebrow">PAGE NOT FOUND</span>

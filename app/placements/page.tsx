@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
-import Navbar from "@/components/layout/Navbar";
+// import Navbar from "@/components/layout/Navbar";
 import PlacementCards from "@/components/placements/PlacementCards";
 import { PLACEMENTS } from "@/data/placements";
 
@@ -33,7 +33,7 @@ const preparation = [
 export default function PlacementsPage() {
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
 
       <main className="overflow-hidden bg-[#f4f0e8]">
         {/* Hero */}

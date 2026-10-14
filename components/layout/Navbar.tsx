@@ -1,4 +1,3 @@
-
 // "use client";
 
 // import Link from "next/link";
@@ -11,7 +10,7 @@
 //   { label: "About", href: "/about" },
 //   { label: "Courses", href: "/courses" },
 //   { label: "Placements", href: "/placements" },
-//   { label: "Contact", href: "/contact" },
+  
 // ];
 
 // export default function Navbar() {
@@ -21,12 +20,24 @@
 //   const close = useCallback(() => setOpen(false), []);
 
 //   useEffect(() => {
-//     const handleScroll = () => setScrolled(window.scrollY > 12);
+//     let frame = 0;
+
+//     const handleScroll = () => {
+//       if (frame) return;
+
+//       frame = window.requestAnimationFrame(() => {
+//         setScrolled(window.scrollY > 20);
+//         frame = 0;
+//       });
+//     };
 
 //     handleScroll();
 //     window.addEventListener("scroll", handleScroll, { passive: true });
 
-//     return () => window.removeEventListener("scroll", handleScroll);
+//     return () => {
+//       window.removeEventListener("scroll", handleScroll);
+//       if (frame) window.cancelAnimationFrame(frame);
+//     };
 //   }, []);
 
 //   useEffect(() => {
@@ -50,21 +61,29 @@
 //   }, [open, close]);
 
 //   return (
-//     <header className="sticky top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4">
+//     <header className="sticky top-0 z-50 px-3 pt-2 sm:px-5 sm:pt-2.5">
+//       {/* Slim, full-width glass blur */}
+//       <div
+//         aria-hidden="true"
+//         className={`pointer-events-none fixed inset-x-0 top-0 -z-10 h-[76px] transition-[opacity,background-color,box-shadow] duration-300 ease-out sm:h-[82px] ${
+//           scrolled
+//             ? "bg-[#f4f0e8]/40 opacity-100 shadow-[0_6px_20px_rgba(16,16,16,0.035)] backdrop-blur-xl"
+//             : "bg-transparent opacity-0 shadow-none backdrop-blur-none"
+//         }`}
+//       />
+
 //       <nav
 //         aria-label="Main navigation"
-//         className={`relative mx-auto flex min-h-[66px] max-w-[1440px] items-center justify-between gap-3 px-1 transition-[padding] duration-200 sm:gap-5 sm:px-2 ${
-//           scrolled ? "py-1" : "py-0"
-//         }`}
+//         className="relative mx-auto flex min-h-[58px] max-w-[1440px] items-center justify-between gap-3 px-1 sm:gap-5 sm:px-2"
 //       >
-//         {/* Logo */}
+//         {/* Brand */}
 //         <Link
 //           href="/"
 //           onClick={close}
 //           aria-label="Data Council home"
 //           className="flex min-w-0 shrink-0 items-center gap-2 sm:gap-3"
 //         >
-//           <span className="flex size-9 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white sm:size-11">
+//           <span className="flex size-9 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white sm:size-10">
 //             <Image
 //               src="/images/data-council-logo.png"
 //               alt="Data Council logo"
@@ -93,7 +112,7 @@
 //               <Link
 //                 key={link.label}
 //                 href={link.href}
-//                 className="rounded-full px-3.5 py-3 text-[13px] font-medium text-[#101010]/75 transition-[background-color,color,backdrop-filter] duration-200 hover:bg-white/45 hover:text-[#101010] hover:backdrop-blur-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#101010] xl:px-5"
+//                 className="rounded-full px-3.5 py-2.5 text-[13px] font-medium text-[#101010]/75 transition-[background-color,color,backdrop-filter] duration-200 hover:bg-white/30 hover:text-[#101010] hover:backdrop-blur-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#101010] xl:px-5"
 //               >
 //                 {link.label}
 //               </Link>
@@ -105,20 +124,20 @@
 //         <Link
 //           href="/contact"
 //           onClick={close}
-//           className="hidden min-h-11 shrink-0 items-center justify-center gap-2 rounded-full bg-[#101010] px-5 text-[13px] font-semibold !text-white transition-[background-color,color,transform] duration-200 hover:!bg-[#c9ff3b] hover:!text-[#101010] active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#101010] lg:inline-flex"
+//           className="hidden min-h-10 shrink-0 items-center justify-center gap-2 rounded-full bg-[#101010] px-5 text-[13px] font-semibold !text-white transition-[background-color,color,transform] duration-250 hover:!bg-[#c9ff3b] hover:!text-[#101010] active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#101010] lg:inline-flex"
 //         >
 //           Book a demo
 //           <ArrowUpRight size={15} aria-hidden="true" />
 //         </Link>
 
-//         {/* Mobile: only logo and hamburger in navbar */}
+//         {/* Mobile hamburger */}
 //         <button
 //           type="button"
 //           onClick={() => setOpen((value) => !value)}
 //           aria-label={open ? "Close navigation" : "Open navigation"}
 //           aria-expanded={open}
 //           aria-controls="mobile-navigation"
-//           className="flex size-10 shrink-0 items-center justify-center rounded-full text-[#101010] transition-colors duration-200 hover:bg-white/45 hover:backdrop-blur-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#101010] active:scale-[0.97] lg:hidden"
+//           className="flex size-10 shrink-0 items-center justify-center rounded-full text-[#101010] transition-colors duration-200 hover:bg-white/30 hover:backdrop-blur-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#101010] active:scale-[0.97] lg:hidden"
 //         >
 //           {open ? (
 //             <X size={21} aria-hidden="true" />
@@ -127,18 +146,18 @@
 //           )}
 //         </button>
 
-//         {/* Mobile dropdown: links and CTA */}
+//         {/* Mobile dropdown */}
 //         {open && (
 //           <div
 //             id="mobile-navigation"
-//             className="absolute left-0 right-0 top-[calc(100%+8px)] rounded-2xl bg-[#f4f0e8]/85 p-2 shadow-[0_16px_40px_rgba(16,16,16,0.10)] backdrop-blur-2xl lg:hidden"
+//             className="absolute left-0 right-0 top-[calc(100%+8px)] rounded-2xl bg-[#f4f0e8]/80 p-2 shadow-[0_16px_40px_rgba(16,16,16,0.10)] backdrop-blur-2xl lg:hidden"
 //           >
 //             {links.map((link) => (
 //               <Link
 //                 key={link.label}
 //                 href={link.href}
 //                 onClick={close}
-//                 className="flex min-h-12 items-center justify-between rounded-xl px-4 text-sm font-medium text-[#101010]/75 transition-[background-color,color,backdrop-filter] duration-200 hover:bg-white/45 hover:text-[#101010] hover:backdrop-blur-xl focus-visible:outline-2 focus-visible:outline-[#101010]"
+//                 className="flex min-h-12 items-center justify-between rounded-xl px-4 text-sm font-medium text-[#101010]/75 transition-colors duration-200 hover:bg-white/30 hover:text-[#101010] focus-visible:outline-2 focus-visible:outline-[#101010]"
 //               >
 //                 {link.label}
 //                 <ArrowUpRight
@@ -153,7 +172,7 @@
 //               <Link
 //                 href="/contact"
 //                 onClick={close}
-//                 className="flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-[#101010] px-5 text-sm font-semibold !text-white transition-[background-color,color,transform] duration-200 hover:!bg-[#c9ff3b] hover:!text-[#101010] active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#101010]"
+//                 className="flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-[#101010] px-5 text-sm font-semibold !text-white transition-[background-color,color,transform] duration-250 hover:!bg-[#c9ff3b] hover:!text-[#101010] active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#101010]"
 //               >
 //                 Book a demo
 //                 <ArrowUpRight size={16} aria-hidden="true" />
@@ -184,7 +203,7 @@ const links = [
   { label: "About", href: "/about" },
   { label: "Courses", href: "/courses" },
   { label: "Placements", href: "/placements" },
-  { label: "Contact", href: "/contact" },
+  { label: "Gallery", href: "/gallery" },
 ];
 
 export default function Navbar() {
@@ -298,7 +317,7 @@ export default function Navbar() {
         <Link
           href="/contact"
           onClick={close}
-          className="hidden min-h-10 shrink-0 items-center justify-center gap-2 rounded-full bg-[#101010] px-5 text-[13px] font-semibold !text-white transition-[background-color,color,transform] duration-250 hover:!bg-[#c9ff3b] hover:!text-[#101010] active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#101010] lg:inline-flex"
+          className="hidden min-h-10 shrink-0 items-center justify-center gap-2 rounded-full bg-[#101010] px-5 text-[13px] font-semibold !text-white transition-[background-color,color,transform] duration-300 hover:!bg-[#c9ff3b] hover:!text-[#101010] active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#101010] lg:inline-flex"
         >
           Book a demo
           <ArrowUpRight size={15} aria-hidden="true" />
@@ -346,7 +365,7 @@ export default function Navbar() {
               <Link
                 href="/contact"
                 onClick={close}
-                className="flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-[#101010] px-5 text-sm font-semibold !text-white transition-[background-color,color,transform] duration-250 hover:!bg-[#c9ff3b] hover:!text-[#101010] active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#101010]"
+                className="flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-[#101010] px-5 text-sm font-semibold !text-white transition-[background-color,color,transform] duration-300 hover:!bg-[#c9ff3b] hover:!text-[#101010] active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#101010]"
               >
                 Book a demo
                 <ArrowUpRight size={16} aria-hidden="true" />

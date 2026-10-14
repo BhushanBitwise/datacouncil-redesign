@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight, BriefcaseBusiness, Code2, GraduationCap, Users } from "lucide-react";
 
-import Navbar from "@/components/layout/Navbar";
+// import Navbar from "@/components/layout/Navbar";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
 export const metadata: Metadata = {
@@ -46,7 +46,7 @@ const pillars = [
 export default function AboutPage() {
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
 
       <main className="overflow-hidden bg-[#f4f0e8]">
         <section className="container-main pb-20 pt-12 sm:pb-28 sm:pt-20">
