@@ -172,6 +172,8 @@ export default function Home() {
             </ScrollReveal>
           </div>
         </section>
+
+        
       </main>
 
       {/* Footer */}
