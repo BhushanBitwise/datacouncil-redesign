@@ -12,6 +12,7 @@ import TestimonialsSection from "@/components/home/TestimonialsSection";
 import EnquirySection from "@/components/home/EnquirySection";
 import CompanyMarquee from "@/components/home/CompanyMarquee";
 import LiveProjects from "@/components/home/LiveProjects";
+import LocationsSection from "@/components/home/LocationsSection";
 
 const stats = [
   { value: "25k", label: "Students" },
@@ -29,6 +30,7 @@ export default function Home() {
         <Hero />
 
         <Marquee />
+
 
         {/* Overview statistics */}
         <section
@@ -58,7 +60,7 @@ export default function Home() {
 
         {/* Courses */}
         <CoursesSection />
-
+        <LocationsSection />
         {/* About Data Council */}
         <section className="section-space overflow-hidden">
           <div className="container-main">

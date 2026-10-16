@@ -1,6 +1,7 @@
 
 import type { MetadataRoute } from "next";
 import { courses } from "@/data/courses";
+import { locations } from "@/data/locations";
 
 const SITE_URL = "https://www.datacouncil.in";
 
@@ -31,13 +32,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
+    {
+      url: `${SITE_URL}/gallery`,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+    {
+      url: `${SITE_URL}/ojt`,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
   ];
 
+  const locationRoutes: MetadataRoute.Sitemap = locations.map(
+    (location) => ({
+      url: `${SITE_URL}/locations/${location.slug}`,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    }),
+  );
+
   const courseRoutes: MetadataRoute.Sitemap = courses.map((course) => ({
-    url: `${SITE_URL}/courses/${course.slug}`,
+    url: `${SITE_URL}/courses/${course.slug}-in-pune`,
     changeFrequency: "monthly",
     priority: 0.6,
   }));
 
-  return [...staticRoutes, ...courseRoutes];
+  return [...staticRoutes, ...locationRoutes, ...courseRoutes];
 }
