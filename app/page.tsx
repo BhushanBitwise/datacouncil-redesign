@@ -60,7 +60,7 @@ export default function Home() {
 
         {/* Courses */}
         <CoursesSection />
-        <LocationsSection />
+        {/* <LocationsSection /> */}
         {/* About Data Council */}
         <section className="section-space overflow-hidden">
           <div className="container-main">
