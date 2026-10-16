@@ -12,7 +12,7 @@ import TestimonialsSection from "@/components/home/TestimonialsSection";
 import EnquirySection from "@/components/home/EnquirySection";
 import CompanyMarquee from "@/components/home/CompanyMarquee";
 import LiveProjects from "@/components/home/LiveProjects";
-import LocationsSection from "@/components/home/LocationsSection";
+// import LocationsSection from "@/components/home/LocationsSection";
 
 const stats = [
   { value: "25k", label: "Students" },
