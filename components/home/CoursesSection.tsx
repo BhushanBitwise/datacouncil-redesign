@@ -262,7 +262,7 @@ export default function CoursesSection() {
                 href="/courses"
                 className="dc-view-all inline-flex h-14 w-fit shrink-0 items-center gap-3 self-start rounded-full border border-[#f4efe7]/10 px-7 text-base font-semibold transition-[background-color,color,border-color,transform] duration-300 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#c9ff3b] md:self-auto"
               >
-                <span>View all courses</span>
+                <span className="">View all courses</span>
                 <ArrowUpRight size={17} aria-hidden="true" />
               </Link>
             </div>
@@ -323,7 +323,7 @@ export default function CoursesSection() {
             onClick={() => scrollByPage(-1)}
             disabled={!canPrev}
             aria-label="Scroll courses left"
-            className="dc-arrow absolute left-3 top-1/2 z-10 hidden size-12 -translate-y-1/2 items-center justify-center rounded-full bg-[#f4efe7] text-[#111] shadow-[0_8px_24px_rgba(0,0,0,0.45)] transition-[opacity,background-color] duration-200 hover:bg-[#c9ff3b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9ff3b] md:flex lg:left-6"
+            className="dc-arrow  absolute left-3 top-1/2 z-10 hidden size-12 -translate-y-1/2 items-center justify-center rounded-full bg-[#f4efe7] text-[#111] shadow-[0_8px_24px_rgba(0,0,0,0.45)] transition-[opacity,background-color] duration-200 hover:bg-[#c9ff3b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9ff3b] md:flex lg:left-6"
             style={{
               opacity: canPrev ? 1 : 0,
               pointerEvents: canPrev ? "auto" : "none",
@@ -371,14 +371,15 @@ export default function CoursesSection() {
           </Link>
         </div>
       </div>
-
+{/* background-color: #111111; */}
       <style>{`
         /* Explicit colours so global link styles can't override them */
         .dc-view-all,
         .dc-view-all:link,
         .dc-view-all:visited {
-          background-color: #111111;
-          color: #f4efe7 !important;
+           background-color:#f4efe7;
+               
+          color: #000 !important;
         }
 
         .dc-view-all:hover {
