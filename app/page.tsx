@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, MoveUpRight } from "lucide-react";
 
-// import Navbar from "@/components/layout/Navbar";
+import CertificateShowcase from "@/components/home/CertificateShowcase";
 import Hero from "@/components/home/Hero";
 import Marquee from "@/components/home/Marquee";
 import CoursesSection from "@/components/home/CoursesSection";
@@ -152,6 +152,7 @@ export default function Home() {
         <LiveProjects/>
 
         {/* Enquiry form */}
+        <CertificateShowcase />
         <EnquirySection />
 
 
