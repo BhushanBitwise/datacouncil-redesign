@@ -12,6 +12,7 @@ import TestimonialsSection from "@/components/home/TestimonialsSection";
 import EnquirySection from "@/components/home/EnquirySection";
 import CompanyMarquee from "@/components/home/CompanyMarquee";
 import LiveProjects from "@/components/home/LiveProjects";
+import Marquee2 from "@/components/home/Marquee2";
 // import LocationsSection from "@/components/home/LocationsSection";
 
 const stats = [
@@ -60,6 +61,8 @@ export default function Home() {
 
         {/* Courses */}
         <CoursesSection />
+
+        <Marquee2/>
         {/* <LocationsSection /> */}
         {/* About Data Council */}
         <section className="section-space overflow-hidden">

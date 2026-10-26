@@ -407,3 +407,62 @@ body {
   -webkit-mask-image: linear-gradient(to bottom, #000 30%, transparent 100%);
   mask-image: linear-gradient(to bottom, #000 30%, transparent 100%);
 }
+
+/*  */
+
+
+
+/* =========================================
+   DATA COUNCIL — MARQUEE ANIMATIONS
+========================================= */
+
+/* First marquee: Learning approach */
+.marquee-track {
+  animation: dc-marquee-first 28s linear infinite;
+  will-change: transform;
+}
+
+/* Second marquee: AI, projects and career benefits */
+.marquee-track-benefits {
+  animation: dc-marquee-second 56s linear infinite;
+  will-change: transform;
+}
+
+/* First marquee animation */
+@keyframes dc-marquee-first {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Second marquee animation */
+@keyframes dc-marquee-second {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Pause on desktop hover */
+@media (hover: hover) and (pointer: fine) {
+  .marquee-track:hover,
+  .marquee-track-benefits:hover {
+    animation-play-state: paused;
+  }
+}
+
+/* Accessibility: respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track,
+  .marquee-track-benefits {
+    animation: none;
+    will-change: auto;
+  }
+}

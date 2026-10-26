@@ -170,6 +170,7 @@ export const courses: Course[] = [
     description:
       "Data Analytics Training in Pune will help you develop practical skills in spreadsheets, SQL, data cleaning, dashboards, business metrics and data-driven decision-making.",
   },
+  
   {
     title: "Salesforce",
     slug: "salesforce",
@@ -322,4 +323,20 @@ export const courses: Course[] = [
     description:
       "Social Media Marketing Training in Pune will help you plan content, manage social media calendars, understand audiences, run campaigns and measure engagement and conversions.",
   },
+  {
+  title: "Generative AI",
+  slug: "generative-ai",
+  duration: "3 Months",
+  category: "Artificial Intelligence",
+  description:
+    "Generative AI Training in Pune will help you learn Large Language Models (LLMs), prompt engineering, AI-powered application development, embeddings, Retrieval-Augmented Generation (RAG) and model integration through practical projects.",
+},
+{
+  title: "Agentic AI",
+  slug: "agentic-ai",
+  duration: "3 Months",
+  category: "Artificial Intelligence",
+  description:
+    "Agentic AI Training in Pune will help you build AI agents that plan tasks, use tools, retrieve information and execute multi-step workflows. Learn agent architecture, tool calling, memory, multi-agent coordination, human approval and evaluation through hands-on projects.",
+},
 ];

@@ -51,6 +51,204 @@ export const courseSyllabi: Record<string, CourseSyllabus> = {
     ],
     capstone: "Analyze a sales, marketing or operations dataset; deliver SQL analysis, an interactive dashboard and a concise evidence-based business recommendation.",
   },
+
+// 
+  "generative-ai": {
+    prerequisites: [
+      "Basic computer and programming knowledge",
+      "Python fundamentals are recommended",
+      "No previous experience with Generative AI is required",
+    ],
+
+    tools: [
+      "Python",
+      "Jupyter Notebook",
+      "VS Code",
+      "LLM provider APIs",
+      "Prompt engineering tools",
+      "LangChain",
+      "Hugging Face",
+      "Embeddings and vector databases",
+      "FastAPI",
+      "Git and GitHub",
+    ],
+
+    outcomes: [
+      "Explain Generative AI, LLMs, tokens, context windows and model limitations",
+      "Write and evaluate structured prompts for different use cases",
+      "Integrate language models into Python applications using APIs",
+      "Build document-based question-answering applications using RAG",
+      "Work with embeddings, semantic search and vector databases",
+      "Evaluate AI output quality, reduce hallucinations and apply responsible AI practices",
+      "Build and document a deployable Generative AI application",
+    ],
+
+    modules: [
+      {
+        title: "Month 1 · AI, LLM and Prompt Engineering Foundations",
+        topics: [
+          "Introduction to Artificial Intelligence, Machine Learning, Deep Learning and Generative AI",
+          "Generative AI use cases, capabilities and limitations",
+          "Large Language Models: tokens, context windows, inference and model selection",
+          "Transformer architecture and attention mechanism: conceptual introduction",
+          "Python essentials for AI application development",
+          "Working with LLM APIs, API keys, environment variables and structured responses",
+          "Prompt engineering: instructions, context, constraints and output formats",
+          "Zero-shot, few-shot, role-based and example-driven prompting",
+          "Structured JSON outputs, reusable prompt templates and prompt iteration",
+          "Temperature, token limits, latency, cost and model comparison",
+          "Hallucinations, privacy, bias and responsible AI fundamentals",
+        ],
+        practical:
+          "Build a Python-based AI assistant that performs summarization, text classification, content generation and structured information extraction.",
+      },
+
+      {
+        title: "Month 2 · Embeddings, Vector Databases and RAG",
+        topics: [
+          "Text embeddings and semantic similarity",
+          "Document ingestion, parsing, cleaning and preprocessing",
+          "Chunking strategies, overlap and metadata design",
+          "Vector databases and similarity-search fundamentals",
+          "Semantic search, top-k retrieval and metadata filtering",
+          "Retrieval-Augmented Generation (RAG) architecture and workflow",
+          "Connecting retrieved context with LLM prompts",
+          "Grounded answers, source references and insufficient-context handling",
+          "Introduction to LangChain and reusable LLM application components",
+          "Conversation history and context management",
+          "RAG failure analysis, retrieval quality and answer evaluation",
+          "Security considerations, prompt injection and sensitive-data handling",
+        ],
+        practical:
+          "Build a document question-answering application that indexes a collection of PDFs, retrieves relevant passages and generates answers grounded in those passages.",
+      },
+
+      {
+        title: "Month 3 · Application Development, Evaluation and Deployment",
+        topics: [
+          "Designing reusable Generative AI application architecture",
+          "Building API endpoints with Python and FastAPI",
+          "Connecting an AI backend to a web frontend",
+          "Input validation, error handling, retries and rate-limit management",
+          "Streaming responses and conversational interfaces",
+          "Function calling and introductory tool integration",
+          "Evaluating answer relevance, groundedness and factual consistency",
+          "Test datasets, regression testing and prompt-version management",
+          "Latency, token consumption and inference-cost optimization",
+          "Environment configuration, secrets management and logging",
+          "Deployment fundamentals and production-readiness checks",
+          "Project documentation, GitHub portfolio and technical presentation",
+        ],
+        practical:
+          "Develop and deploy a full-stack Generative AI application with a web interface, API integration, document retrieval, error handling and documented evaluation results.",
+      },
+    ],
+
+    capstone:
+      "Build a production-oriented knowledge assistant that accepts documents, creates embeddings, retrieves relevant context, answers user questions with source references and evaluates answer quality. Include a frontend, backend API, setup instructions and test cases.",
+  },
+
+  "agentic-ai": {
+    prerequisites: [
+      "Basic programming knowledge in Python or JavaScript",
+      "Basic understanding of APIs, JSON and HTTP requests",
+      "Familiarity with LLMs and prompt engineering is helpful",
+      "Generative AI experience is recommended but not mandatory",
+    ],
+
+    tools: [
+      "Python",
+      "VS Code",
+      "LLM provider APIs",
+      "LangChain",
+      "LangGraph",
+      "FastAPI",
+      "REST APIs",
+      "Git and GitHub",
+      "SQLite or PostgreSQL",
+      "Vector databases",
+      "Agent tracing and evaluation tools",
+    ],
+
+    outcomes: [
+      "Explain the differences between chatbots, deterministic workflows and AI agents",
+      "Design agent workflows with explicit state, actions and stopping conditions",
+      "Implement tool calling and controlled external API integration",
+      "Build agents with task planning, memory and retrieval capabilities",
+      "Create stateful workflows using LangGraph or comparable orchestration tools",
+      "Design multi-agent workflows for suitable tasks",
+      "Implement human approval, tool permissions and failure handling",
+      "Trace, test and evaluate agent decisions and tool execution",
+      "Build and document an end-to-end agentic AI application",
+    ],
+
+    modules: [
+      {
+        title: "Month 1 · Agent Architecture and Tool Calling",
+        topics: [
+          "Introduction to Agentic AI and real-world use cases",
+          "Chatbots versus LLM applications versus AI agents",
+          "Agent architecture: model, instructions, tools, state and execution loop",
+          "Task understanding, goal definition and structured outputs",
+          "LLM API integration and tool/function calling",
+          "Designing tools with validated inputs and structured results",
+          "Executing REST APIs and application functions through tools",
+          "Agent decisions, observations and iterative execution",
+          "State management and conversation context",
+          "Memory concepts: conversation history and persistent application state",
+          "Deterministic workflows versus autonomous agent loops",
+          "Tool errors, retries, timeouts, iteration limits and stopping conditions",
+        ],
+        practical:
+          "Build a single-agent assistant that interprets a request, selects from a small set of read-only tools, executes an action, checks the result and returns a structured response.",
+      },
+
+      {
+        title: "Month 2 · Workflow Orchestration, RAG and Multi-Agent Systems",
+        topics: [
+          "Planning multi-step tasks and decomposing goals into smaller steps",
+          "Building stateful workflows using LangGraph fundamentals",
+          "Nodes, edges, conditional routing and shared workflow state",
+          "Checkpointing, persistence and resumable workflows",
+          "Combining deterministic steps with model-driven decisions",
+          "Integrating retrieval tools and RAG into agent workflows",
+          "Tool selection, result interpretation and bounded retry strategies",
+          "Human-in-the-loop approval before sensitive actions",
+          "Multi-agent architecture and specialized agent roles",
+          "Agent handoffs, coordination and shared task context",
+          "Parallel task execution and result aggregation concepts",
+          "Observability, execution traces and debugging agent behavior",
+        ],
+        practical:
+          "Build a research workflow that retrieves information, invokes approved tools, routes tasks through multiple steps and produces a final response with supporting evidence. Add human approval for a sensitive or externally visible action.",
+      },
+
+      {
+        title: "Month 3 · Evaluation, Security and Production Deployment",
+        topics: [
+          "Designing end-to-end agent execution flows",
+          "Tool permissions, least privilege and input validation",
+          "Prompt injection, untrusted tool output and data-access boundaries",
+          "Human approval for database writes and other consequential operations",
+          "Agent traces, tool-call logs and execution-state inspection",
+          "Evaluating task completion, tool selection and output correctness",
+          "Test cases for successful, failed and ambiguous requests",
+          "Handling API failures, rate limits, retries and partial results",
+          "Controlling loops, execution time, token consumption and cost",
+          "FastAPI endpoints and frontend integration",
+          "Persistent state, database integration and deployment fundamentals",
+          "Monitoring, error reporting, documentation and portfolio presentation",
+        ],
+        practical:
+          "Build and deploy an agentic application that accepts a user goal, plans a bounded workflow, invokes approved tools, verifies results, requests human approval when required and records execution details for debugging.",
+      },
+    ],
+
+    capstone:
+      "Build an end-to-end AI task assistant with a user interface, bounded planning and execution, tool calling, retrieval where appropriate, state persistence, result verification, error handling, execution tracing and human approval for sensitive actions. Demonstrate the complete flow from user input to verified final response.",
+  },
+
+// 
   aws: {
     prerequisites: ["Basic IT and networking concepts are helpful", "Comfort using a computer and command line is useful"],
     tools: ["AWS Management Console", "IAM", "VPC", "EC2", "S3", "RDS", "CloudWatch", "AWS CLI"],

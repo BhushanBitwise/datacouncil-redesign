@@ -80,7 +80,8 @@ export default function Hero() {
             <div className="dc-hero-visual relative mx-auto w-full max-w-[580px] lg:ml-auto">
                <div className="relative aspect-[4/4.4] overflow-hidden rounded-[28px] bg-[#101010] sm:aspect-[4/4.1] sm:rounded-[36px] lg:aspect-[4/4.5]">
                 <Image
-                  src="/images/hero2.webp"
+                  // src="/images/hero2.webp"
+                  src="/images/gallery/Data-Council-Full-Stack-training-Session.webp"
                   alt="Students learning and building technology skills in a classroom"
                   fill
                   priority
